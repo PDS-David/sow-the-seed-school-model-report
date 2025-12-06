@@ -9,12 +9,21 @@ from functools import wraps
 app = Flask(__name__, static_folder='public', template_folder='public')
 app.secret_key = os.environ.get('SECRET_KEY', 'supersecretkey123')
 
-# Vercel-compatible database configuration
-# Using SQLite with absolute path for Vercel
+# Database configuration - Works locally AND on PythonAnywhere
 DATABASE_URL = os.environ.get('DATABASE_URL')
 if not DATABASE_URL:
-    # Use /tmp directory for serverless environments
-    db_path = os.path.join('/tmp', 'school.db')
+    # Get the absolute path of the current directory
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    
+    # Try /tmp for serverless, otherwise use local directory
+    if os.access('/tmp', os.W_OK):
+        db_path = os.path.join('/tmp', 'school.db')
+    else:
+        # Use instance folder for better organization
+        instance_folder = os.path.join(basedir, 'instance')
+        os.makedirs(instance_folder, exist_ok=True)
+        db_path = os.path.join(instance_folder, 'school.db')
+    
     DATABASE_URL = f'sqlite:///{db_path}'
 
 # Fix for PostgreSQL URL format if using external DB
@@ -144,7 +153,7 @@ def calculate_class_statistics(student_class, term_id):
     return stats
 
 
-# Initialize database on first request (Vercel serverless)
+# Initialize database on first request
 @app.before_request
 def init_db():
     """Initialize database with sample data on first request"""

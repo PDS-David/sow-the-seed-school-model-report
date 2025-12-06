@@ -6,13 +6,13 @@
     <title>Report Card - {{ student.name }}</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f5f5f5;
             padding: 20px;
         }
-        
+
         .report-card {
             max-width: 900px;
             margin: 0 auto;
@@ -21,36 +21,26 @@
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        
+
         .header {
             text-align: center;
             margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 3px solid #667eea;
         }
-        
+
         .school-logo {
             width: 100px;
             height: 100px;
             margin: 0 auto 15px;
-            display: block;
             border-radius: 50%;
+            display: block;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        
-        .header h1 {
-            color: #667eea;
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-        
-        .header h2 {
-            color: #666;
-            font-size: 18px;
-            font-weight: 400;
-            margin-bottom: 10px;
-        }
-        
+
+        .header h1 { color: #667eea; font-size: 24px; margin-bottom: 5px; }
+        .header h2 { color: #666; font-size: 18px; margin-bottom: 10px; }
+
         .contact-bar {
             background: #f7fafc;
             padding: 10px;
@@ -59,11 +49,9 @@
             font-size: 12px;
             color: #555;
         }
-        
-        .contact-bar p {
-            margin: 3px 0;
-        }
-        
+
+        .contact-bar p { margin: 3px 0; }
+
         .student-info {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -73,70 +61,46 @@
             background: #f7fafc;
             border-radius: 10px;
         }
-        
-        .info-item {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .info-item strong {
-            color: #333;
-            min-width: 120px;
-        }
-        
-        .info-item span {
-            color: #666;
-        }
-        
+
+        .info-item { display: flex; gap: 10px; }
+        .info-item strong { min-width: 120px; color: #333; }
+        .info-item span { color: #666; }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 30px;
         }
-        
+
         th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
             color: white;
             padding: 12px;
             text-align: center;
-            font-weight: 600;
             font-size: 13px;
         }
-        
+
         td {
             padding: 12px;
             text-align: center;
             border-bottom: 1px solid #e2e8f0;
-            color: #333;
         }
-        
-        tr:hover {
-            background: #f7fafc;
-        }
-        
-        .subject-name {
-            text-align: left !important;
-            font-weight: 500;
-        }
-        
-        .grade {
-            font-weight: 700;
-            font-size: 16px;
-        }
-        
+
+        .subject-name { text-align: left !important; font-weight: 500; }
+
         .grade-A { color: #48bb78; }
         .grade-B { color: #4299e1; }
         .grade-C { color: #ed8936; }
         .grade-D { color: #f56565; }
         .grade-E, .grade-F { color: #c53030; }
-        
+
         .summary {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
-        
+
         .summary-box {
             padding: 20px;
             background: #f7fafc;
@@ -144,161 +108,130 @@
             text-align: center;
             border-left: 4px solid #667eea;
         }
-        
-        .summary-box h3 {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        
+
         .summary-box .value {
             font-size: 28px;
             font-weight: 700;
             color: #667eea;
         }
-        
-        .remark {
-            text-align: left !important;
-            font-size: 12px;
-            color: #666;
-            font-style: italic;
-        }
-        
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            margin: 5px;
-        }
-        
-        .btn-primary {
-            background: #667eea;
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: #5568d3;
-        }
-        
-        .btn-secondary {
-            background: #718096;
-            color: white;
-        }
-        
+
+        .remark { font-style: italic; font-size: 12px; color: #666; text-align: left !important; }
+
         .actions {
             text-align: center;
             margin-top: 30px;
             padding-top: 20px;
             border-top: 2px solid #e2e8f0;
         }
-        
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+            font-size: 15px;
+        }
+
+        .btn-primary { background: #667eea; color: white; }
+        .btn-secondary { background: #718096; color: white; }
+
         @media print {
             body { background: white; padding: 0; }
-            .btn, .actions { display: none; }
+            .actions, .btn { display: none !important; }
         }
     </style>
 </head>
 <body>
-    <div class="report-card">
-        <div class="header">
-            <!-- School Logo -->
-            <img src="{{ url_for('static', filename=school_info.logo) }}" alt="{{ school_info.name }}" class="school-logo" onerror="this.style.display='none'">
-            
-            <h1>{{ school_info.name }}</h1>
-            <h2>Student Report Card</h2>
-            
-            <!-- Contact Information -->
-            <div class="contact-bar">
-                <p>📍 {{ school_info.address }} | 📞 {{ school_info.phone1 }}, {{ school_info.phone2 }}</p>
-            </div>
-        </div>
-        
-        <div class="student-info">
-            <div class="info-item">
-                <strong>Student Name:</strong>
-                <span>{{ student.name }}</span>
-            </div>
-            <div class="info-item">
-                <strong>Admission No:</strong>
-                <span>{{ student.admission_number or 'N/A' }}</span>
-            </div>
-            <div class="info-item">
-                <strong>Class:</strong>
-                <span>{{ student.student_class }}</span>
-            </div>
-            {% if current_term %}
-            <div class="info-item">
-                <strong>Term:</strong>
-                <span>{{ current_term.name }} {{ current_term.academic_year }}</span>
-            </div>
-            {% endif %}
-        </div>
-        
-        {% if report_data %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Subject</th>
-                    <th>CA1<br>(15)</th>
-                    <th>CA2<br>(15)</th>
-                    <th>Exam<br>(70)</th>
-                    <th>Total<br>(100)</th>
-                    <th>Grade</th>
-                    <th>Position</th>
-                    <th>Highest</th>
-                    <th>Average</th>
-                    <th>Remark</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for data in report_data %}
-                <tr>
-                    <td class="subject-name">{{ data.subject }}</td>
-                    <td>{{ data.ca1 }}</td>
-                    <td>{{ data.ca2 }}</td>
-                    <td>{{ data.exam }}</td>
-                    <td><strong>{{ data.total }}</strong></td>
-                    <td class="grade grade-{{ data.grade }}">{{ data.grade }}</td>
-                    <td>{{ data.position }}</td>
-                    <td>{{ data.class_highest }}</td>
-                    <td>{{ data.class_average }}</td>
-                    <td class="remark">{{ data.remark or '-' }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        
-        <div class="summary">
-            <div class="summary-box">
-                <h3>Overall Position</h3>
-                <div class="value">{{ student_stats.position or '-' }}</div>
-                <small style="color: #666;">out of {{ total_students }} students</small>
-            </div>
-            <div class="summary-box">
-                <h3>Total Score</h3>
-                <div class="value">{{ student_stats.total or 0 }}</div>
-            </div>
-            <div class="summary-box">
-                <h3>Average</h3>
-                <div class="value">{{ "%.1f"|format(student_stats.average or 0) }}%</div>
-            </div>
-        </div>
-        {% else %}
-        <div style="text-align: center; padding: 40px; color: #a0aec0;">
-            <p>No scores available for this student in the current term.</p>
-        </div>
-        {% endif %}
-        
-        <div class="actions">
-            <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">← Back to Dashboard</a>
-            <button onclick="window.print()" class="btn btn-primary">🖨️ Print Report</button>
+<div class="report-card">
+
+    <div class="header">
+
+        <!-- USE LOGO 2 -->
+        <img src="{{ url_for('static', filename='logo2.png') }}" class="school-logo">
+
+        <h1>{{ school_info.name }}</h1>
+        <h2>Student Report Card</h2>
+
+        <!-- FIXED CONTACT INFO -->
+        <div class="contact-bar">
+            <p>📍 Olosan Road, Alakia, Ibadan</p>
+            <p>📞 08033269042, 08138044735</p>
         </div>
     </div>
+
+    <div class="student-info">
+        <div class="info-item"><strong>Student Name:</strong> <span>{{ student.name }}</span></div>
+        <div class="info-item"><strong>Admission No:</strong> <span>{{ student.admission_number }}</span></div>
+        <div class="info-item"><strong>Class:</strong> <span>{{ student.student_class }}</span></div>
+
+        {% if current_term %}
+        <div class="info-item"><strong>Term:</strong> <span>{{ current_term.name }} {{ current_term.academic_year }}</span></div>
+        {% endif %}
+    </div>
+
+    {% if report_data %}
+    <table>
+        <thead>
+        <tr>
+            <th>Subject</th>
+            <th>CA1 (15)</th>
+            <th>CA2 (15)</th>
+            <th>Exam (70)</th>
+            <th>Total</th>
+            <th>Grade</th>
+            <th>Position</th>
+            <th>Highest</th>
+            <th>Average</th>
+            <th>Remark</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for data in report_data %}
+        <tr>
+            <td class="subject-name">{{ data.subject }}</td>
+            <td>{{ data.ca1 }}</td>
+            <td>{{ data.ca2 }}</td>
+            <td>{{ data.exam }}</td>
+            <td><strong>{{ data.total }}</strong></td>
+            <td class="grade-{{ data.grade }}">{{ data.grade }}</td>
+            <td>{{ data.position }}</td>
+            <td>{{ data.class_highest }}</td>
+            <td>{{ data.class_average }}</td>
+            <td class="remark">{{ data.remark or "-" }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="summary">
+        <div class="summary-box">
+            <h3>Overall Position</h3>
+            <div class="value">{{ student_stats.position }}</div>
+            <small>Out of {{ total_students }} students</small>
+        </div>
+
+        <div class="summary-box">
+            <h3>Total Score</h3>
+            <div class="value">{{ student_stats.total }}</div>
+        </div>
+
+        <div class="summary-box">
+            <h3>Average</h3>
+            <div class="value">{{ "%.1f"|format(student_stats.average) }}%</div>
+        </div>
+    </div>
+
+    {% else %}
+    <p style="text-align:center; padding:40px; color:#888;">No report data found.</p>
+    {% endif %}
+
+    <div class="actions">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">← Back to Dashboard</a>
+        <button onclick="window.print()" class="btn btn-primary">🖨️ Print Report</button>
+    </div>
+
+</div>
 </body>
 </html>
